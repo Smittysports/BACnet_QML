@@ -1,0 +1,22 @@
+# Build artifacts
+build/
+CMakeCache.txt
+CMakeFiles/
+BACnetModule/
+Makefile
+*.o
+*.so
+*.dylib
+*.exe
+*.dll
+*.a
+*.lib
+
+# Qt Creator-specific files
+CMakeLists.txt.user*
+*.pro.user
+
+# Other temporary files
+*.tmp
+*~
+
