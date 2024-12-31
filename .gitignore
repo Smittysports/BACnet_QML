@@ -3,6 +3,11 @@ build/
 CMakeCache.txt
 CMakeFiles/
 BACnetModule/
+.qt/
+.rcc/
+cmake_install.cmake
+mybacnet_qmltyperegistrations.cpp
+
 Makefile
 *.o
 *.so
