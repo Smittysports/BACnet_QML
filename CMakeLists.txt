@@ -20,7 +20,13 @@ qt_add_qml_module(MyBACnet
     QML_FILES
         Main.qml
         FramedBACnetImage.qml
+        BACnetObjectTypes.qml
     RESOURCES
         img/BACnet.jpg
+    SOURCES
+        Networking.cpp
+        Networking.h
+        BACnetObjectTypes.cpp
+        BACnetObjectTypes.h
     )
     
