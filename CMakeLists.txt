@@ -21,11 +21,15 @@ qt_add_qml_module(MyBACnet
         Main.qml
         FramedBACnetImage.qml
         BACnetObjectTypes.qml
+        RightBar.qml
+        Log.qml
     RESOURCES
         img/BACnet.jpg
     SOURCES
         Networking.cpp
         Networking.h
+        BACnetInterface.cpp
+        BACnetInterface.h
         BACnetObjectTypes.cpp
         BACnetObjectTypes.h
     )
