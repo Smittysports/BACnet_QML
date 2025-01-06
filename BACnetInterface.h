@@ -2,6 +2,7 @@
 #define BACNETINTERFACE_H
 
 #include <QObject>
+#include "Networking.h"
 
 namespace BACnet {
 
@@ -21,7 +22,8 @@ public:
      * also be exposed to QML, which is done in main.cpp with qmlRegisterType. */
     Q_INVOKABLE void send();
 
-signals:
+private:
+    Networking m_networking;
 };
 
 } // namespace BACnet

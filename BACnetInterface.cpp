@@ -12,6 +12,7 @@ BACnetInterface::BACnetInterface(QObject *parent)
 void BACnetInterface::send()
 {
     qDebug() << "Send\n";
+    m_networking.send();
 }
 
 } // namespace BACnet
