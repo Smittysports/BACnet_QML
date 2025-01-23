@@ -7,6 +7,10 @@ BACnetModule/
 .rcc/
 cmake_install.cmake
 mybacnet_qmltyperegistrations.cpp
+MyBACnet
+MyBACnet_autogen/
+meta_types/
+qmltypes/
 
 Makefile
 *.o

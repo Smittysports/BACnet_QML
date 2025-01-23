@@ -15,4 +15,9 @@ void BACnetInterface::send()
     m_networking.send();
 }
 
+QByteArray BACnetInterface::getResponse()
+{
+    return m_networking.getResponse();
+}
+
 } // namespace BACnet

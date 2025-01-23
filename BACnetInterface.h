@@ -22,6 +22,7 @@ public:
      * also be exposed to QML, which is done in main.cpp with qmlRegisterType. */
     Q_INVOKABLE void send();
 
+    Q_INVOKABLE QByteArray getResponse();
 private:
     Networking m_networking;
 };

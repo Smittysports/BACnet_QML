@@ -3,17 +3,24 @@
 
 #include <QUdpSocket>
 #include <QObject>
+#include "ThreadSafeQueue.h"
 
 namespace BACnet {
 
 /**
  * @brief The Networking class
- */
+ *
+ * Qt requires the use of QObject for the networking to utilize signals and slots.
+ *
+ * The m_clientSocket is a QUdpSocket object, which allows the Networking class to bind
+ * to a network address for use in sending and receiving UDP messages. */
 class Networking : QObject
 {
     Q_OBJECT
 
 public:
+    /** Constructor
+     * Initializes the member variables and connects the m_clientSocket to the desired IP address and port. */
     explicit Networking(QObject *parent = nullptr);
 
     void send();
@@ -74,10 +81,13 @@ public:
      */
     void sendReadAnalogValue();
 
+    QByteArray getResponse();
+
 private:
     QHostAddress m_hostAddress;
     int m_port;
     QUdpSocket* m_clientSocket;
+    ThreadSafeQueue<QByteArray> m_responses;
 
 public slots:
     void readyRead();

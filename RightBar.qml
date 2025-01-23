@@ -40,8 +40,13 @@ Rectangle {
         }
 
         Button {
-            text: "It"
-            onClicked: console.log("It")
+            text: "Show"
+            onClicked: {
+                var str = bacnetInterface.getResponse().toString()
+                console.log(str.length)
+                // ToDo: Emit a signal and connect to it from the Log.qml in order to show the data
+
+            }
 
             background: Rectangle {
                 implicitWidth: columnLayout.buttonWidth
