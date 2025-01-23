@@ -32,5 +32,6 @@ qt_add_qml_module(MyBACnet
         BACnetInterface.h
         BACnetObjectTypes.cpp
         BACnetObjectTypes.h
+        SOURCES ThreadSafeQueue.h
     )
     
