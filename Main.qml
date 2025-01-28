@@ -22,6 +22,13 @@ Window {
         id: objectTypes
         anchors.top: parent.top
         anchors.left: parent.left
+        anchors.bottom: log.top
+    }
+
+    CommandResponse {
+        id: commandResponse
+        anchors.top: parent.top
+        anchors.left: objectTypes.right
         anchors.right: rightBar.left
         anchors.bottom: log.top
     }
@@ -36,6 +43,7 @@ Window {
 
     Log {
         id: log
+
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom

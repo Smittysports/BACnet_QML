@@ -13,6 +13,13 @@ namespace BACnet {
 class BACnetInterface : public QObject
 {
     Q_OBJECT
+    /** bytesReceived:               The name of the property
+     *  READ bytesReceived:          The getter function that reads the property value
+     *  WRITE setBytesReceived:      The setter function that modifies the properties value
+     *  NOTIFY bytesReceivedChanged: The signal that is emitted when the property value changes
+     */
+    Q_PROPERTY(int bytesReceived READ bytesReceived WRITE setBytesReceived NOTIFY bytesReceivedChanged)
+
 public:
     explicit BACnetInterface(QObject *parent = nullptr);
 
@@ -22,9 +29,23 @@ public:
      * also be exposed to QML, which is done in main.cpp with qmlRegisterType. */
     Q_INVOKABLE void send();
 
-    Q_INVOKABLE QByteArray getResponse();
+    Q_INVOKABLE QString getCommand();
+
+    Q_INVOKABLE QString getResponse();
+
+    int bytesReceived() const;
+
+    void setBytesReceived(const int bytes);
+
+public slots:
+    void handleBytesReceived(const int received);
+
 private:
     Networking m_networking;
+    int m_bytesReceived = 0;
+
+signals:
+    void bytesReceivedChanged(int bytes);
 };
 
 } // namespace BACnet
