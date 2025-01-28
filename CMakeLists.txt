@@ -23,6 +23,7 @@ qt_add_qml_module(MyBACnet
         BACnetObjectTypes.qml
         RightBar.qml
         Log.qml
+        CommandResponse.qml
     RESOURCES
         img/BACnet.jpg
     SOURCES

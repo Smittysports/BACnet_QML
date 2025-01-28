@@ -4,7 +4,7 @@ import com.BACnet.models 1.0
 import Qt.labs.qmlmodels
 
 Rectangle {
-    width: 500
+    width: 250
     height: 500
     visible: true
 

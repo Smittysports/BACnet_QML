@@ -14,7 +14,7 @@ namespace BACnet {
  *
  * The m_clientSocket is a QUdpSocket object, which allows the Networking class to bind
  * to a network address for use in sending and receiving UDP messages. */
-class Networking : QObject
+class Networking : public QObject
 {
     Q_OBJECT
 
@@ -81,13 +81,23 @@ public:
      */
     void sendReadAnalogValue();
 
+    /** Currently just used to keep track of the last command.
+     *
+     * This should change to be in sync with the responses. Requires a new design
+     */
+    QByteArray getCommands();
+
     QByteArray getResponse();
 
 private:
-    QHostAddress m_hostAddress;
-    int m_port;
+    QHostAddress m_hostAddress {"10.0.0.179"};
+    int m_port = 47808;
     QUdpSocket* m_clientSocket;
+    QByteArray m_commands;
     ThreadSafeQueue<QByteArray> m_responses;
+
+signals:
+    void bytesReceivedSignal(int);
 
 public slots:
     void readyRead();
