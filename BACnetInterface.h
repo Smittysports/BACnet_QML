@@ -23,6 +23,8 @@ class BACnetInterface : public QObject
 public:
     explicit BACnetInterface(QObject *parent = nullptr);
 
+    Q_INVOKABLE void shutdown();
+
     /** The send method will attempt to send the BACnet message that was constructed to the desired BACnet device.
      *
      * The Q_INVOKABLE macro is used to flag to Qt that the send method can be called from QML. The BACnetInterface must

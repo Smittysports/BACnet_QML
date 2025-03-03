@@ -28,4 +28,4 @@ CMakeLists.txt.user*
 # Other temporary files
 *.tmp
 *~
-
+BrianThreadPool.txt

@@ -1,5 +1,6 @@
 #include "BACnetInterface.h"
 #include <QDebug>
+#include <QGuiApplication>
 
 namespace BACnet {
 
@@ -9,9 +10,13 @@ BACnetInterface::BACnetInterface(QObject *parent)
     connect(&m_networking, SIGNAL(bytesReceivedSignal(int)), this, SLOT(handleBytesReceived(int)));
 }
 
+void BACnetInterface::shutdown()
+{
+    m_networking.shutdown();
+}
+
 void BACnetInterface::send()
 {
-    qDebug() << "Send\n";
     m_networking.send();
 }
 

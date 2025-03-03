@@ -13,10 +13,17 @@ Networking::Networking(QObject *parent) :
     connect(m_clientSocket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 }
 
+void Networking::shutdown()
+{
+    m_networkThreadPool.shutdownWorkerThreads();
+}
+
 void Networking::send()
 {
-    sendWriteAnalogValue();
-    sendReadAnalogValue();
+    // Perform the network send an receive commands on a thread obtained from the ThreadPool
+    // This is done by sending the function as a bound std::Function to the ThreadPool using the addJob method
+    m_networkThreadPool.addJob(std::bind(&Networking::sendWriteAnalogValue, this));
+    m_networkThreadPool.addJob(std::bind(&Networking::sendWriteAnalogValue, this));
 }
 
 void Networking::sendWriteAnalogValue()
@@ -26,9 +33,8 @@ void Networking::sendWriteAnalogValue()
                            0x00, 0x80, 0x00, 0x01, 0x19, 0x55, 0x3e, 0x44, 0x3f, 0x80, 0x00,
                            0x00, 0x3f};
     m_commands = QByteArray::fromRawData((char*)dat,24);
-    qDebug() << "sendWriteAnalogValue: " << m_commands << "\n";
     QHostAddress device {"10.0.0.77"};
-    int devicePort {47809};
+    int devicePort {47808};
     qint64 bytesSent = m_clientSocket->writeDatagram(m_commands, device, devicePort);
 }
 
@@ -37,9 +43,8 @@ void Networking::sendReadAnalogValue()
     unsigned char dat[]={0x81, 0x0a, 0x00, 0x11, 0x01, 0x04, 0x02, 0x05, 0x3d, 0x0c, 0x0c, 0x00, 0x80, 0x00, 0x01, 0x19, 0x55};
 
     m_commands = QByteArray::fromRawData((char*)dat,17);
-    qDebug() << "sendReadAnalogValue: " << m_commands << "\n";
     QHostAddress device {"10.0.0.77"};
-    int devicePort {47809};
+    int devicePort {47808};
     qint64 bytesSent = m_clientSocket->writeDatagram(m_commands, device, devicePort);
 }
 

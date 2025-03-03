@@ -3,7 +3,7 @@
 
 #include <QUdpSocket>
 #include <QObject>
-#include "ThreadSafeQueue.h"
+#include "Threading/ThreadPool.h"
 
 namespace BACnet {
 
@@ -22,6 +22,8 @@ public:
     /** Constructor
      * Initializes the member variables and connects the m_clientSocket to the desired IP address and port. */
     explicit Networking(QObject *parent = nullptr);
+
+    void shutdown();
 
     void send();
 
@@ -90,6 +92,7 @@ public:
     QByteArray getResponse();
 
 private:
+    ThreadPool m_networkThreadPool;
     QHostAddress m_hostAddress {"10.0.0.179"};
     int m_port = 47808;
     QUdpSocket* m_clientSocket;
