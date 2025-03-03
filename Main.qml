@@ -7,17 +7,6 @@ Window {
     width: 1000
     height: 800
 
-    /*
-    Text {
-        text: "BACnet"
-        anchors.centerIn: parent
-        color: "white"
-        z: 2
-    }
-    */
-    //FramedBACnetImage { id: framedBACnetImage; anchors.top: parent.top; }
-    //BACnetObjectTypes { anchors.top: framedBACnetImage.bottom; anchors.bottom: parent.bottom }
-
     BACnetObjectTypes {
         id: objectTypes
         anchors.top: parent.top
@@ -49,4 +38,7 @@ Window {
         anchors.bottom: parent.bottom
     }
 
+    onClosing: {
+        myBACnetInterface.shutdown()
+    }
 }
