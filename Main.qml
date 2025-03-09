@@ -7,35 +7,30 @@ Window {
     width: 1000
     height: 800
 
-    BACnetObjectTypes {
-        id: objectTypes
+    Loader {
+        id: mainContentLoader
+        width: parent.width
+        height: parent.height * 0.75
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.bottom: log.top
     }
-
-    CommandResponse {
-        id: commandResponse
-        anchors.top: parent.top
-        anchors.left: objectTypes.right
-        anchors.right: rightBar.left
-        anchors.bottom: log.top
+    /*
+    Rectangle {
+        id: mainScreenId
+        anchors.fill: parent
+        anchors.margins: 0.25 * parent.height
     }
-
-    RightBar {
-        id: rightBar
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.bottom: log.top
-        visible: true
-    }
-
+    */
     Log {
         id: log
-
+        anchors.top: mainContentLoader.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+    }
+
+    Component.onCompleted: {
+        mainContentLoader.source = "MainScreenChooser.qml"
     }
 
     onClosing: {
