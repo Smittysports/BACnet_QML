@@ -33,7 +33,7 @@ void Networking::sendWriteAnalogValue()
                            0x00, 0x80, 0x00, 0x01, 0x19, 0x55, 0x3e, 0x44, 0x3f, 0x80, 0x00,
                            0x00, 0x3f};
     m_commands = QByteArray::fromRawData((char*)dat,24);
-    QHostAddress device {"10.0.0.77"};
+    QHostAddress device {"10.17.21.125"};
     int devicePort {47808};
     qint64 bytesSent = m_clientSocket->writeDatagram(m_commands, device, devicePort);
 }
@@ -43,7 +43,7 @@ void Networking::sendReadAnalogValue()
     unsigned char dat[]={0x81, 0x0a, 0x00, 0x11, 0x01, 0x04, 0x02, 0x05, 0x3d, 0x0c, 0x0c, 0x00, 0x80, 0x00, 0x01, 0x19, 0x55};
 
     m_commands = QByteArray::fromRawData((char*)dat,17);
-    QHostAddress device {"10.0.0.77"};
+    QHostAddress device {"10.17.21.125"};
     int devicePort {47808};
     qint64 bytesSent = m_clientSocket->writeDatagram(m_commands, device, devicePort);
 }

@@ -93,7 +93,7 @@ public:
 
 private:
     ThreadPool m_networkThreadPool;
-    QHostAddress m_hostAddress {"10.0.0.179"};
+    QHostAddress m_hostAddress {"10.17.21.127"};
     int m_port = 47808;
     QUdpSocket* m_clientSocket;
     QByteArray m_commands;

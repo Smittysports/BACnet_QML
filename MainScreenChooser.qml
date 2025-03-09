@@ -1,32 +1,37 @@
-/** RightBar.qml
-  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
-    id: rightBar
-    visible: true
-    width: 80
-    height: parent.height
-
     ColumnLayout{
         id: columnLayout
         spacing: 10
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
+        property int buttonWidth: 60
 
         Rectangle {
             id: spacer
         }
 
-        BackButton {}
-
         Button {
-            text: "Send"
+            text: "Discover"
             onClicked: {
-                myBACnetInterface.send()
+                mainContentLoader.source = "Discovery.qml"
+            }
+            background: Rectangle {
+                implicitWidth: columnLayout.buttonWidth
+                border.width: 2
+                border.color: "black"
+                radius: 4
+                color: parent.down ? "lightgray" :
+                        (parent.hovered ? "green" : "gray")
+            }
+        }
+        Button {
+            text: "Manual"
+            onClicked: {
+                mainContentLoader.source = "Manual.qml"
             }
             background: Rectangle {
                 implicitWidth: columnLayout.buttonWidth
