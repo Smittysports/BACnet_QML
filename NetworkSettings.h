@@ -1,22 +1,12 @@
-#ifndef BACNETOBJECTTYPES_H
-#define BACNETOBJECTTYPES_H
+#ifndef NETWORKSETTINGS_H
+#define NETWORKSETTINGS_H
 
 #include <QAbstractListModel>
-#include <QStringList>
-#include <utility>
+#include <QObject>
+#include <QNetworkInterface>
 
 namespace BACnet {
-
-/**
- * @brief The BACnetObjectTypes class
- *
- * @extends QAbstractListModel
- *
- * The QAbstractListModel is used to ___
- *
- * The BACnetObjectTypes class is exposed to QML in main.cpp via qmlRegisterType.
- */
-class BACnetObjectTypes : public QAbstractListModel
+class NetworkSettings : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -42,11 +32,10 @@ class BACnetObjectTypes : public QAbstractListModel
     Q_PROPERTY(int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged)
 
 public:
-    BACnetObjectTypes(QObject *parent = nullptr);
+    NetworkSettings(QObject *parent = nullptr);
 
     /** Roles are used to access the desired data in a list. If the list is very simple, there may not be a need
-     * to add new roles. For the BACnet Object types, they each have an associated ID that is used to identify
-     * what BACnet object is being sent over a network (See 'BACnetObjectType ::') in the BACnet spec.
+     * to add new roles.
      */
     enum Roles {
         NameRole = Qt::UserRole + 1,
@@ -69,7 +58,7 @@ public:
     QStringList items() const;
 
 private:
-    std::vector<std::pair<QString, int>> m_items;
+    QList<QString> m_items;
     int m_currentIndex = 0;
 
 signals:
@@ -79,7 +68,5 @@ signals:
 
     void currentIndexChanged();
 };
-
-} // namespace BACnet
-
-#endif // BACNETOBJECTTYPES_H
+} // namespace
+#endif // NETWORKSETTINGS_H

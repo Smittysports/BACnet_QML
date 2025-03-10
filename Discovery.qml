@@ -30,6 +30,34 @@ Rectangle {
             }
 
             BackButton {}
+
+            Button {
+                id: discoverButton
+                 anchors.margins: 2
+
+                background: Rectangle {
+                    implicitWidth: 40
+                    implicitHeight: 40
+                    border.color: "black"
+                    border.width: 1
+                    radius: 4
+                    color: parent.down ? "lightgray" :
+                            (parent.hovered ? "green" : "gray")
+
+                    Image {
+                        width: parent.width * 0.8
+                        height: parent.height * 0.8
+                        source: "img/discover.png"
+                        fillMode: Image.Stretch
+                        opacity: 0.5
+                        anchors.centerIn: parent
+                    }
+                }
+
+                onClicked: {
+                    myBACnetInterface.whoIs()
+                }
+            }
         }
     }
 

@@ -1,3 +1,5 @@
+/** MainScreenChooser.qml
+  */
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -32,6 +34,20 @@ Rectangle {
             text: "Manual"
             onClicked: {
                 mainContentLoader.source = "Manual.qml"
+            }
+            background: Rectangle {
+                implicitWidth: columnLayout.buttonWidth
+                border.width: 2
+                border.color: "black"
+                radius: 4
+                color: parent.down ? "lightgray" :
+                        (parent.hovered ? "green" : "gray")
+            }
+        }
+        Button {
+            text: "Network Configuration"
+            onClicked: {
+                mainContentLoader.source = "NetworkConfiguration.qml"
             }
             background: Rectangle {
                 implicitWidth: columnLayout.buttonWidth

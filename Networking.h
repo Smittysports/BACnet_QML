@@ -25,7 +25,21 @@ public:
 
     void shutdown();
 
+    void createUDPSocket();
+
+    void setIPAddress(const QString& address);
+
+    void setPort(const int port);
+
+    void setDeviceIPAddress(const QString& address);
+
+    void setDevicePort(const int port);
+
+    std::vector<QString> getNetworkAddresses();
+
     void send();
+
+    void whoIs();
 
     /** sendWriteAnalogValue
      *
@@ -93,8 +107,10 @@ public:
 
 private:
     ThreadPool m_networkThreadPool;
-    QHostAddress m_hostAddress {"10.17.21.127"};
+    QHostAddress m_hostAddress {"10.0.0.179"};
     int m_port = 47808;
+    QHostAddress m_deviceHostAddress {"10.0.0.77"};
+    int m_devicePort = 47808;
     QUdpSocket* m_clientSocket;
     QByteArray m_commands;
     ThreadSafeQueue<QByteArray> m_responses;

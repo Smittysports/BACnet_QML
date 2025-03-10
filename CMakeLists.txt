@@ -27,9 +27,10 @@ qt_add_qml_module(MyBACnet
         MainScreenChooser.qml
         Discovery.qml
         Manual.qml
+        NetworkConfiguration.qml
+        NetworkList.qml
         FramedBACnetImage.qml
         BACnetObjectTypes.qml
-        RightBar.qml
         Log.qml
         CommandResponse.qml
         BackButton.qml
@@ -37,9 +38,12 @@ qt_add_qml_module(MyBACnet
         img/BACnet.jpg
         img/back.png
         img/back-arrow-black.png
+        img/discover.png
     SOURCES
         Networking.cpp
         Networking.h
+        NetworkSettings.cpp
+        NetworkSettings.h
         BACnetInterface.cpp
         BACnetInterface.h
         BACnetObjectTypes.cpp
