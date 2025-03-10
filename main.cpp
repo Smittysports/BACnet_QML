@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "BACnetObjectTypes.h"
+#include "NetworkSettings.h"
 #include "BACnetInterface.h"
 
 int main(int argc, char *argv[])
@@ -10,6 +11,7 @@ int main(int argc, char *argv[])
 
     // This registers the BACnetObjectTypes class for instantiation in QML
     qmlRegisterType<BACnet::BACnetObjectTypes>("com.BACnet.models", 1, 0, "BACnetObjectTypes");
+    qmlRegisterType<BACnet::NetworkSettings>("com.BACnet.models", 1, 0, "NetworkSettings");
 
     QQmlApplicationEngine engine;
 

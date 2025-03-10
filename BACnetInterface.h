@@ -31,6 +31,18 @@ public:
      * also be exposed to QML, which is done in main.cpp with qmlRegisterType. */
     Q_INVOKABLE void send();
 
+    Q_INVOKABLE void setIPAddress(const QString& address);
+
+    Q_INVOKABLE void setPort(const int port);
+
+    Q_INVOKABLE void setDeviceIPAddress(const QString& address);
+
+    Q_INVOKABLE void setDevicePort(const int port);
+
+    Q_INVOKABLE void createUDPSocket();
+
+    Q_INVOKABLE void whoIs();
+
     Q_INVOKABLE QString getCommand();
 
     Q_INVOKABLE QString getResponse();

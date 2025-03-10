@@ -15,6 +15,32 @@ Rectangle {
         anchors.left: parent.left
     }
 
+    ColumnLayout{
+        id: manualDataColumnLayout
+        spacing: 10
+        anchors.top: objectTypes.bottom
+        anchors.left: parent.left
+        anchors.topMargin: 5
+        anchors.leftMargin: 10
+        property int textFieldWidths: 100
+
+        Rectangle {
+            id: manualDataColumnSpacer
+        }
+
+        TextField {
+            id: ipAddressTextField
+            text: "0.0.0.0"
+            width: manualDataColumnLayout.textFieldWidths
+        }
+
+        TextField {
+            id: portTextField
+            text: "47808"
+            width: manualDataColumnLayout.textFieldWidths
+        }
+    }
+
     CommandResponse {
         id: commandResponse
         anchors.top: parent.top
@@ -48,6 +74,8 @@ Rectangle {
             Button {
                 text: "Send"
                 onClicked: {
+                    myBACnetInterface.setDeviceIPAddress(ipAddressTextField.text)
+                    myBACnetInterface.setDevicePort(parseInt(portTextField.text, 10))
                     myBACnetInterface.send()
                 }
                 background: Rectangle {
