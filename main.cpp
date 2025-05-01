@@ -4,6 +4,7 @@
 #include "BACnetObjectTypes.h"
 #include "NetworkSettings.h"
 #include "BACnetInterface.h"
+#include "LearningInterface.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,6 +19,8 @@ int main(int argc, char *argv[])
     // This instantiates the BACnetInterface class and allows many QML files to use it directly
     BACnet::BACnetInterface bacnetInterface{};
     engine.rootContext()->setContextProperty("myBACnetInterface", &bacnetInterface);
+    Learning::LearningInterface learningInterface{};
+    engine.rootContext()->setContextProperty("myLearningInterface", &learningInterface);
 
     const QUrl url(u"qrc:/BACnetModule/Main.qml"_qs);
     engine.load(url);

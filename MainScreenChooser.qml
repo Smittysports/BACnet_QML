@@ -58,5 +58,19 @@ Rectangle {
                         (parent.hovered ? "green" : "gray")
             }
         }
+        Button {
+            text: "C++ Learning"
+            onClicked: {
+                mainContentLoader.source = "Learning.qml"
+            }
+            background: Rectangle {
+                implicitWidth: columnLayout.buttonWidth
+                border.width: 2
+                border.color: "black"
+                radius: 4
+                color: parent.down ? "lightgray" :
+                        (parent.hovered ? "green" : "gray")
+            }
+        }
     }
 }
