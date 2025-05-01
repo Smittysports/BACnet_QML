@@ -16,8 +16,9 @@ qt_add_executable(MyBACnet
     main.cpp
 )
 
-target_link_libraries(MyBACnet PRIVATE Qt6::Gui Qt6::Quick ThreadingLibrary)
+target_link_libraries(MyBACnet PRIVATE Qt6::Gui Qt6::Quick ThreadingLibrary LearningLibrary)
 add_subdirectory(Threading)
+add_subdirectory(Learning)
 
 qt_add_qml_module(MyBACnet
     URI BACnetModule
@@ -34,6 +35,7 @@ qt_add_qml_module(MyBACnet
         Log.qml
         CommandResponse.qml
         BackButton.qml
+        Learning.qml
     RESOURCES
         img/BACnet.jpg
         img/back.png
@@ -48,5 +50,7 @@ qt_add_qml_module(MyBACnet
         BACnetInterface.h
         BACnetObjectTypes.cpp
         BACnetObjectTypes.h
+        LearningInterface.cpp
+        LearningInterface.h
     )
     
