@@ -27,12 +27,25 @@ Column {
         height: 200
 
         TextArea{
-            id: testme2
+            id: textAreaId
             anchors.fill: parent
             anchors.margins: 4
             color: "black"
             placeholderText: "Text goes in here ...."
         }
     }
+
+    Connections {
+        target: myLearningInterface
+
+        function onClearLogSignal() {
+            textAreaId.text = ""
+        }
+
+        function onLogUpdatedSignal(message) {
+            textAreaId.text += message;
+        }
+    }
+
 }
 

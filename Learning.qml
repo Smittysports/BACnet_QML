@@ -8,25 +8,68 @@ Rectangle {
     id: learningRectangle
     anchors.fill: parent
 
-    property var cpp11StringList: ["lambdas", "auto", "decltype", "uniform initialization syntax", "delete & default",
-        "nullptr", "move semantics", "threading library", "smart pointers"]
 
-    property var cpp14StringList: ["auto function return", "variable templates", "binary literals", "generic lambdas",
-        "lambda capture expressions", "The [[deprecated]] attribute"]
+    property var functionMapCpp11: ({
+        "lambdas": myLearningInterface.notImplemented,
+        "auto": myLearningInterface.notImplemented,
+        "decltype": myLearningInterface.notImplemented,
+        "uniform initialization syntax": myLearningInterface.notImplemented,
+        "delete & default": myLearningInterface.notImplemented,
+        "nullptr": myLearningInterface.notImplemented,
+        "move semantics": myLearningInterface.notImplemented,
+        "threading library": myLearningInterface.notImplemented,
+        "smart pointers": myLearningInterface.notImplemented
+    })
 
-    property var cpp17StringList: ["Optional value", "constexpr lambdas", "inline variables", "nested namespaces", "variant",
-        "any", "Fold exressions"]
+    property var functionMapCpp14: ({
+        "auto function return": myLearningInterface.notImplemented,
+        "variable templates": myLearningInterface.notImplemented,
+        "binary literals": myLearningInterface.notImplemented,
+        "generic lambdas": myLearningInterface.notImplemented,
+        "lambda capture expressions": myLearningInterface.notImplemented,
+        "The [[deprecated]] attribute": myLearningInterface.notImplemented
+    })
 
-    property var cpp20StringList: ["Range-based for loop", "Attributes", "Constinit", "Lambda capture of parameter pack",
-        "Lambda improvements", "Constexpr improvements", "Coroutines", "Modules", "Concept",
-        "String literalts as template params", "Constant expressions", "Designated initializers", "Template syntax for lambdas"]
+    property var functionMapCpp17: ({
+        "Optional value": myLearningInterface.testOptional,
+        "constexpr lambdas": myLearningInterface.notImplemented,
+        "inline variables": myLearningInterface.notImplemented,
+        "nested namespaces": myLearningInterface.notImplemented,
+        "variant": myLearningInterface.notImplemented,
+        "any": myLearningInterface.notImplemented,
+        "Fold exressions": myLearningInterface.notImplemented
+    })
 
-    property var cpp23StringList: ["Concept enhancements", "Module enhancements", "Coroutine enhancements", "Ranges enhancements",
-        "Explicit object parameters", "if consteval", "Multidimensional subscruipt operator", "Enhanced lambda expressions",
-        "size_t literal suffix", "..."]
+    property var functionMapCpp20: ({
+        "Range-based for loop": myLearningInterface.notImplemented,
+        "Attributes": myLearningInterface.notImplemented,
+        "Constinit": myLearningInterface.notImplemented,
+        "Lambda capture of parameter pack": myLearningInterface.notImplemented,
+        "Lambda improvements": myLearningInterface.notImplemented,
+        "Constexpr improvements": myLearningInterface.notImplemented,
+        "Coroutines": myLearningInterface.notImplemented,
+        "Modules": myLearningInterface.notImplemented,
+        "Concept": myLearningInterface.notImplemented,
+        "String literalts as template params": myLearningInterface.notImplemented,
+        "Constant expressions": myLearningInterface.notImplemented,
+        "Designated initializers": myLearningInterface.notImplemented,
+        "Template syntax for lambdas": myLearningInterface.notImplemented
+    })
 
-    property int listChoice: 0
-    property string listText: ""
+    property var functionMapCpp23: ({
+        "Concept enhancements": myLearningInterface.notImplemented,
+        "Module enhancements": myLearningInterface.notImplemented,
+        "Coroutine enhancements": myLearningInterface.notImplemented,
+        "Ranges enhancements": myLearningInterface.notImplemented,
+        "Explicit object parameters": myLearningInterface.notImplemented,
+        "if consteval": myLearningInterface.notImplemented,
+        "Multidimensional subscruipt operator": myLearningInterface.notImplemented,
+        "Enhanced lambda expressions": myLearningInterface.notImplemented,
+        "size_t literal suffix": myLearningInterface.notImplemented
+    })
+
+    property var currentMap: functionMapCpp17
+    property string chosenFunctionKey: ""
     property var selectedItem: null
 
     Rectangle {
@@ -74,7 +117,7 @@ Rectangle {
                     Column {
                         width: parent.width
                         Repeater {
-                            model: cpp11StringList
+                            model: Object.keys(functionMapCpp11)
 
                             // TODO: This Rectangle is a candidate for re-factoring since it is common in 5 locations
                             Rectangle
@@ -95,8 +138,8 @@ Rectangle {
                                             learningRectangle.selectedItem.color = "Blue"
                                         learningRectangle.selectedItem = cpp11ItemText
                                         learningRectangle.selectedItem.color = "Green"
-                                        learningRectangle.listChoice = 1
-                                        learningRectangle.listText = cpp11ItemText.text
+                                        learningRectangle.currentMap = functionMapCpp11
+                                        learningRectangle.chosenFunctionKey = cpp11ItemText.text
                                     }
                                 }
                             }
@@ -123,7 +166,7 @@ Rectangle {
                         width: parent.width
 
                         Repeater {
-                            model: cpp14StringList
+                            model: Object.keys(functionMapCpp11)
 
                             Rectangle
                             {
@@ -144,8 +187,8 @@ Rectangle {
                                             learningRectangle.selectedItem.color = "Blue"
                                         learningRectangle.selectedItem = cpp14ItemText
                                         learningRectangle.selectedItem.color = "Green"
-                                        learningRectangle.listChoice = 2
-                                        learningRectangle.listText = cpp14ItemText.text
+                                        learningRectangle.currentMap = functionMapCpp14
+                                        learningRectangle.chosenFunctionKey = cpp14ItemText.text
                                     }
                                 }
                             }
@@ -184,7 +227,7 @@ Rectangle {
                         width: parent.width
 
                         Repeater {
-                            model: cpp17StringList
+                            model: Object.keys(functionMapCpp17)
 
                             Rectangle
                             {
@@ -205,8 +248,8 @@ Rectangle {
                                             learningRectangle.selectedItem.color = "Blue"
                                         learningRectangle.selectedItem = cpp17ItemText
                                         learningRectangle.selectedItem.color = "Green"
-                                        learningRectangle.listChoice = 3
-                                        learningRectangle.listText = cpp17ItemText.text
+                                        learningRectangle.currentMap = functionMapCpp17
+                                        learningRectangle.chosenFunctionKey = cpp17ItemText.text
                                     }
                                 }
                             }
@@ -233,7 +276,7 @@ Rectangle {
                     Column {
                         width: parent.width
                         Repeater {
-                            model: cpp20StringList
+                            model: Object.keys(functionMapCpp20)
 
                             Rectangle
                             {
@@ -254,8 +297,8 @@ Rectangle {
                                             learningRectangle.selectedItem.color = "Blue"
                                         learningRectangle.selectedItem = cpp20ItemText
                                         learningRectangle.selectedItem.color = "Green"
-                                        learningRectangle.listChoice = 4
-                                        learningRectangle.listText = cpp20ItemText.text
+                                        learningRectangle.currentMap = functionMapCpp20
+                                        learningRectangle.chosenFunctionKey = cpp20ItemText.text
                                     }
                                 }
                             }
@@ -289,7 +332,7 @@ Rectangle {
                     Column {
                         width: parent.width
                         Repeater {
-                            model: cpp23StringList
+                            model: Object.keys(functionMapCpp23)
 
                             Rectangle
                             {
@@ -310,8 +353,8 @@ Rectangle {
                                             learningRectangle.selectedItem.color = "Blue"
                                         learningRectangle.selectedItem = cpp23ItemText
                                         learningRectangle.selectedItem.color = "Green"
-                                        learningRectangle.listChoice = 5
-                                        learningRectangle.listText = cpp23ItemText.text
+                                        learningRectangle.currentMap = functionMapCpp23
+                                        learningRectangle.chosenFunctionKey = cpp23ItemText.text
                                     }
                                 }
                             }
@@ -345,26 +388,19 @@ Rectangle {
             BackButton {}
 
             Button {
-                text: "Optional"
-                onClicked: {
-                    // TODO: Create a map to run the desired myLearningInterface method based on the name of the selected value
-                    if (learningRectangle.listChoice == 1)
-                        console.log("C++ 11")
-                    else if (learningRectangle.listChoice == 2)
-                        console.log("C++ 14")
-                    else if (learningRectangle.listChoice == 3)
-                    {
-                        console.log("C++ 17")
-                        if(learningRectangle.listText == "Optional value")
-                            myLearningInterface.testOptional()
-                    }
-                    else if (learningRectangle.listChoice == 4)
-                        console.log("C++ 20")
-                    else if (learningRectangle.listChoice == 5)
-                        console.log("C++ 23")
+                text: "Run"
+                property string functionKey: learningRectangle.chosenFunctionKey
 
-                    console.log(learningRectangle.listText)
-                    // TODO: Get results to show up in the Log
+                onClicked: {
+                    if (currentMap.hasOwnProperty(learningRectangle.chosenFunctionKey))
+                    {
+                        currentMap[learningRectangle.chosenFunctionKey]()
+                    }
+                    else
+                    {
+                        myLearningInterface.clearLog()
+                        myLearningInterface.logText(learningRectangle.chosenFunctionKey + ": Not implemented")
+                    }
                 }
 
                 background: Rectangle {
