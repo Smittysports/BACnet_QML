@@ -4,7 +4,10 @@ project(LearningLibrary)
 
 add_library(LearningLibrary STATIC
 
-    Optional.h
+    cpp17/Optional.h
+    cpp11/Lambda.h
+    cpp17/Variant.h
+    cpp17/Any.h
 )
 
 # Specify the include directories

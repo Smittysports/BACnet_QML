@@ -10,7 +10,7 @@ Rectangle {
 
 
     property var functionMapCpp11: ({
-        "lambdas": myLearningInterface.notImplemented,
+        "lambdas": myLearningInterface.testOriginalLambda,
         "auto": myLearningInterface.notImplemented,
         "decltype": myLearningInterface.notImplemented,
         "uniform initialization syntax": myLearningInterface.notImplemented,
@@ -35,8 +35,9 @@ Rectangle {
         "constexpr lambdas": myLearningInterface.notImplemented,
         "inline variables": myLearningInterface.notImplemented,
         "nested namespaces": myLearningInterface.notImplemented,
-        "variant": myLearningInterface.notImplemented,
-        "any": myLearningInterface.notImplemented,
+        "variant": myLearningInterface.testVariant,
+        "visit": myLearningInterface.testVariant,
+        "any": myLearningInterface.testAny,
         "Fold exressions": myLearningInterface.notImplemented
     })
 
@@ -371,7 +372,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        width: 100
+        width: 150
         border.color: "black"
         border.width: 4
 
@@ -389,6 +390,23 @@ Rectangle {
 
             Button {
                 text: "Run"
+
+                contentItem: Text {
+                    text: "Run"
+                    color: "Green"
+                    font.pixelSize: 16
+                    anchors.centerIn: parent
+                }
+
+                background: Rectangle {
+                    implicitWidth: 40
+                    border.width: 2
+                    border.color: "black"
+                    radius: 4
+                    color: parent.down ? "lightgray" :
+                            (parent.hovered ? "green" : "white")
+                }
+
                 property string functionKey: learningRectangle.chosenFunctionKey
 
                 onClicked: {
@@ -402,14 +420,24 @@ Rectangle {
                         myLearningInterface.logText(learningRectangle.chosenFunctionKey + ": Not implemented")
                     }
                 }
+            }
 
-                background: Rectangle {
-                    implicitWidth: 40
-                    border.width: 2
-                    border.color: "black"
-                    radius: 4
-                    color: parent.down ? "lightgray" :
-                            (parent.hovered ? "green" : "gray")
+            Item {
+                Column {
+                    Text {
+                        text: "Show Docs"
+                        color: "Green"
+                    }
+
+                    CheckBox {
+                        id: docCheckbox
+                        width: 20
+                        height: 20
+                        onCheckedChanged:
+                        {
+                            myLearningInterface.shouldShowDoc(checked)
+                        }
+                    }
                 }
             }
         }
